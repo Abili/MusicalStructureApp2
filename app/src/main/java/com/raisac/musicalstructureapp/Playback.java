@@ -34,7 +34,15 @@ public class Playback extends AppCompatActivity {
         playbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                playbtn.setImageResource(R.drawable.play_btn);
+                playbtn.setVisibility(View.INVISIBLE);
+                pause.setVisibility(View.VISIBLE);
+            }
+        });
+        pause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pause.setVisibility(View.INVISIBLE);
+                playbtn.setVisibility(View.VISIBLE);
             }
         });
 

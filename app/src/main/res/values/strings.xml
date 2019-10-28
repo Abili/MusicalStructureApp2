@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Musical Structure App</string>
+    <string name="title_activity_music_page">Download</string>
+    <string name="action_settings">Settings</string>
+</resources>

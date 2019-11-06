@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bckg_img"
     android:orientation="vertical"
-    tools:context=".Playback">
+    tools:context=".NowPlaying">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,13 +25,13 @@
         <TextView
             android:ellipsize="marquee"
             android:id="@+id/playback_songname"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:paddingLeft="10dp"
-            android:text="song name"
-            android:textSize="18dp"
+            android:text="@string/song_name_textview"
+            android:textSize="@dimen/text_size"
             android:singleLine="true" />
 
         <ImageView
@@ -42,6 +42,7 @@
             android:src="@drawable/listview_music_icon" />
 
         <ImageView
+            android:id="@+id/overflow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -81,10 +82,11 @@
                 android:layout_height="wrap_content"/>
 
             <ImageView
+                android:id="@+id/likebutton"
+                android:layout_width="18dp"
+                android:layout_height="24dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
-                android:layout_width="20dp"
-                android:layout_height="30dp"
                 android:src="@drawable/thumbs_up" />
 
         </LinearLayout>
@@ -101,6 +103,7 @@
 
 
         <ImageView
+            android:visibility="invisible"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:id="@+id/playbtn"
@@ -110,7 +113,6 @@
             android:src="@drawable/play_btn" />
 
         <ImageView
-            android:visibility="gone"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:id="@+id/pausebtn"
@@ -138,6 +140,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/dislike"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="20dp"
@@ -145,7 +148,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:text="0:00"
+                android:text="@string/playback_time"
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>

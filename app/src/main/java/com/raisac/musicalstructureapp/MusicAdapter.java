@@ -1,7 +1,5 @@
 package com.raisac.musicalstructureapp;
 
-import android.content.Intent;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,16 +28,6 @@ public class MusicAdapter extends ArrayAdapter<Music> {
         final Music music = getItem(position);
         final TextView songname = musicView.findViewById(R.id.song_name);
         songname.setText(music.getSongName());
-
-        musicView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String song = songname.getText().toString();
-                Intent intent = new Intent(getContext(), Playback.class);
-                intent.putExtra("song_name", song);
-                getContext().startActivity(intent);
-            }
-        });
         return musicView;
     }
 }

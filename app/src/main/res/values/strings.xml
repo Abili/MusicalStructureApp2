@@ -2,4 +2,14 @@
     <string name="app_name">Musical Structure App</string>
     <string name="title_activity_music_page">Download</string>
     <string name="action_settings">Settings</string>
+    <string name="Now_Playing">Now Playing</string>
+    <string name="Playlists">Songs</string>
+    <string name="Recent_activity">Recent Activity</string>
+    <string name="shuffle">Shuffle</string>
+    <string name="play_next">Play next</string>
+    <string name="add_to_queue">Add to queue</string>
+    <string name="add_to_playlist">Add to Playlist</string>
+    <string name="songs_textview">Songs</string>
+    <string name="song_name_textview">Song name</string>
+    <string name="playback_time">0:00</string>
 </resources>

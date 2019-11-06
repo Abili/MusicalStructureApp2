@@ -9,9 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Playback"></activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".HomeScreen">
+        <activity
+            android:name=".NowPlaying"
+            android:label="@string/Now_Playing"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/Playlists" />
+        <activity
+            android:name=".HomeScreen"
+            android:label="@string/Recent_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -101,6 +101,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  */
                 playBack_layout.setVisibility(View.VISIBLE);
 
+                //show the move forar floaing action button
+                forward.setVisibility(View.VISIBLE);
+
                 //here i get the position of the selected song
                 songs = music.get(position);
 
@@ -194,14 +197,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Intent open_nowPlying_activity = new Intent(MainActivity.this, NowPlaying.class);
                 open_nowPlying_activity.putExtra("song_name", songname_String);
-                open_nowPlying_activity.putExtra("song_url", songs.getSongName());
                 startActivity(open_nowPlying_activity);
 
                 break;
         /*open the now playing Activity on click
          */
             case R.id.nowplayingclass:
-                startActivity(new Intent(MainActivity.this, NowPlaying.class));
+                Intent open_nowPlying_activity2 =new Intent(MainActivity.this, NowPlaying.class);
+                open_nowPlying_activity2.putExtra("song_name", songname_String);
+                startActivity(open_nowPlying_activity2);
                 break;
         }
     }

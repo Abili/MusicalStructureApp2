@@ -78,6 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="60dp"
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
       android:id="@+id/nowplayingclass"
         android:src="@drawable/forwad"

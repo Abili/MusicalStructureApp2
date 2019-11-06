@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     MediaPlayer mediaPlayer;
     String songname_String;
     LinearLayout playBack_layout;
+    FloatingActionButton forward;
 
 
     @Override
@@ -34,10 +37,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         pause = findViewById(R.id.pause_black);
         play = findViewById(R.id.play_black);
         nowPlaying = findViewById(R.id.now_playingTv);
+        forward = findViewById(R.id.nowplayingclass);
 
         //add onclick listeners to the buttons, Play Nand Pause
         play.setOnClickListener(this);
         pause.setOnClickListener(this);
+
+        //this button is mainly just to navigate between the actitivites
+        forward.setOnClickListener(this);
+
 
         /*this is a textview that is found inside the Linead layout that is
         found at the bottom of the screen. innitially this layout is set Invisible
@@ -189,6 +197,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 open_nowPlying_activity.putExtra("song_url", songs.getSongName());
                 startActivity(open_nowPlying_activity);
 
+                break;
+        /*open the now playing Activity on click
+         */
+            case R.id.nowplayingclass:
+                startActivity(new Intent(MainActivity.this, NowPlaying.class));
                 break;
         }
     }

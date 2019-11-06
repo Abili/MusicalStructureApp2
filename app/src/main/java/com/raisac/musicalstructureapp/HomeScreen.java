@@ -16,12 +16,25 @@ public class HomeScreen extends AppCompatActivity {
 
     //instantiate the songs layout
     LinearLayout songs;
-    FloatingActionButton playsaong;
+    FloatingActionButton fabPlaylist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+        /*locate the floating action button
+        this floaing action button helps to open the playlist actitivity or the main activity
+         */
+        fabPlaylist = findViewById(R.id.fabPlaylist);
+
+        fabPlaylist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeScreen.this, MainActivity.class));
+            }
+        });
+
 
         /*
          * note that the songs layout has an image button since each actitivy is required to have an button
@@ -54,11 +67,5 @@ public class HomeScreen extends AppCompatActivity {
 
         });
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.home_overflow,menu);
-        return true;
-    }
+    
 }

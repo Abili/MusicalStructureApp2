@@ -10,6 +10,7 @@
     <string name="add_to_queue">Add to queue</string>
     <string name="add_to_playlist">Add to Playlist</string>
     <string name="songs_textview">Songs</string>
-    <string name="song_name_textview">Song name</string>
+    <string name="song_name_textview">Song name -----</string>
+    <string name="artist_name_textview">Artist name</string>
     <string name="playback_time">0:00</string>
 </resources>

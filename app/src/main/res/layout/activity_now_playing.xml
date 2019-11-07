@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/bckg_img"
     android:orientation="vertical"
     tools:context=".NowPlaying">
@@ -25,12 +26,22 @@
         <TextView
             android:ellipsize="marquee"
             android:id="@+id/playback_songname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="@string/song_name_textview"
+            android:textSize="@dimen/text_size"
+            android:singleLine="true" />
+        <TextView
+            android:ellipsize="marquee"
+            android:id="@+id/artists"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:paddingLeft="10dp"
-            android:text="@string/song_name_textview"
+            android:text="@string/artist_name_textview"
             android:textSize="@dimen/text_size"
             android:singleLine="true" />
 
@@ -153,5 +164,16 @@
 
         </LinearLayout>
     </RelativeLayout>
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginBottom="90dp"
+    android:layout_marginRight="10dp"
+    android:layout_width="wrap_content"
+    app:fabSize="mini"
+    android:id="@+id/movebackFab"
+    android:backgroundTint="@android:color/white"
+    android:src="@drawable/backwards"
+    android:layout_height="wrap_content"/>
 
 </RelativeLayout>

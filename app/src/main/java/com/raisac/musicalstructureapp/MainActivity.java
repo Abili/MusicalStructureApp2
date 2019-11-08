@@ -138,11 +138,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
 
-                /*here i ws tryin to get the song name from the selected listview item
+                /*here i ws tryin to get the song name and artistname from the selected listview item
                 rememeber the listview has a tectview in it that holds the song name
 
-                1. first i get the ID of the text view
-                2. then i get the text from it
+                1. first  get the ID of the text view
+                2. then  get the text from it
                 3. save th text onto a string
                 4. set the text to the textview found in the playback playout
                 below the screen

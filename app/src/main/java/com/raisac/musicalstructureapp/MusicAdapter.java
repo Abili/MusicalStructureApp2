@@ -38,9 +38,6 @@ public class MusicAdapter extends ArrayAdapter<Music> {
         final TextView artist = musicView.findViewById(R.id.artist_name);
         artist.setText(music.getArtistName());
 
-
-
-
         return musicView;
     }
 

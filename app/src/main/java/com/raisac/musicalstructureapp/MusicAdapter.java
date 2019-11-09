@@ -1,6 +1,5 @@
 package com.raisac.musicalstructureapp;
-
-import android.media.MediaPlayer;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,38 +7,41 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+public class MusicAdapter extends ArrayAdapter<String> {
+    private final Activity context;
+    private final String[] names;
 
-import java.util.ArrayList;
-
-public class MusicAdapter extends ArrayAdapter<Music> {
-    ImageView list_playbtn, list_pausebtn;
-
-
-    public MusicAdapter(@NonNull AppCompatActivity context, ArrayList<Music> music) {
-        super(context, 0, music);
-
+    static class ViewHolder {
+        public TextView songname, artistname;
+        public ImageView image;
     }
 
-    @NonNull
+    public MusicAdapter(Activity context, String[] names) {
+        super(context, R.layout.music_item, names);
+        this.context = context;
+        this.names = names;
+    }
+
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View musicView = convertView;
-        if (musicView == null) {
-            musicView = LayoutInflater.from(getContext()).inflate(R.layout.music_item, parent, false);
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View rowView = convertView;
+        // reuse views
+        if (rowView == null) {
+            LayoutInflater inflater = context.getLayoutInflater();
+            rowView = inflater.inflate(R.layout.music_item, null);
+            // configure view holder
+            ViewHolder viewHolder = new ViewHolder();
+            viewHolder.songname = rowView.findViewById(R.id.song_name);
+            viewHolder.artistname =  rowView.findViewById(R.id.artist_name);
+            rowView.setTag(viewHolder);
         }
 
-        final Music music = getItem(position);
-        final TextView songname = musicView.findViewById(R.id.song_name);
-        songname.setText(music.getSongName());
+        // fill data
+        ViewHolder holder = (ViewHolder) rowView.getTag();
+        Music music = getItem(position);
+        holder.artistname.setText(s);
+        holder.songname.setText();
 
-        final TextView artist = musicView.findViewById(R.id.artist_name);
-        artist.setText(music.getArtistName());
-
-        return musicView;
+        return rowView;
     }
-
-
 }

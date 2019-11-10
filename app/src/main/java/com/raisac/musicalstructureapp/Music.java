@@ -1,11 +1,9 @@
 package com.raisac.musicalstructureapp;
 
-import android.net.Uri;
-
-public class Music {
-    private int songUrl;
-    private String songName;
-    private String artistName;
+class Music {
+    private final int songUrl;
+    private final String songName;
+    private final String artistName;
 
     public Music(int SongUrl, String songName,String ArtistName ) {
         this.songUrl = SongUrl;

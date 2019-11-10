@@ -2,10 +2,7 @@ package com.raisac.musicalstructureapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
@@ -14,19 +11,18 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomeScreen extends AppCompatActivity {
 
-    //instantiate the songs layout
-    LinearLayout songs;
-    FloatingActionButton fabPlaylist;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        getSupportActionBar().setLogo(R.drawable.home_music_icon);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
 
         /*locate the floating action button
         this floaing action button helps to open the playlist actitivity or the main activity
          */
-        fabPlaylist = findViewById(R.id.fabPlaylist);
+        FloatingActionButton fabPlaylist = findViewById(R.id.fabPlaylist);
 
         fabPlaylist.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -17,15 +18,44 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    ArrayList<Music> music;
-    ImageView play, next, pause, prev, list_playbtn, list_pausebtn;
-    TextView nowPlaying_songname, songnameTv, artistnameTV, nowPlaying_artist_name;
-    Music songs;
-    MediaPlayer mediaPlayer;
-    String songname_String, artistString;
-    LinearLayout playBack_layout, open_nowplaying_layout;
+    private ArrayList<Music> music;
+
+
+    private TextView songnameTv;
+
+    private TextView artistnameTV;
+
+    private Music songs;
+    private MediaPlayer mediaPlayer;
+    private String songname_String;
+    private String artistString;
+
+    private boolean isPlaying;
+
+    @BindView(R.id.linear_playback)
+    LinearLayout playBack_layout;
+    @BindView(R.id.pause_black)
+    ImageView pause;
+
+    @BindView(R.id.play_black)
+    ImageView play;
+
+    @BindView(R.id.now_playingTv)
+    TextView nowPlaying_songname;
+
+    @BindView(R.id.nowplaying_artistname)
+    TextView nowPlaying_artist_name;
+    @BindView(R.id.open_nowPlaying)
+    LinearLayout open_nowplaying_layout;
+    @BindView(R.id.music_list)
+    ListView listView;
+
+    @BindView(R.id.nowplayingclass)
     FloatingActionButton forward;
 
 
@@ -34,16 +64,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        playBack_layout = findViewById(R.id.linear_playback);
-        pause = findViewById(R.id.pause_black);
-        play = findViewById(R.id.play_black);
-        nowPlaying_songname = findViewById(R.id.now_playingTv);
-        nowPlaying_artist_name = findViewById(R.id.nowplaying_artistname);
-        forward = findViewById(R.id.nowplayingclass);
-        artistnameTV = findViewById(R.id.nowplaying_artistname);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.home_music_icon);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
+        ButterKnife.bind(this);
 
-        open_nowplaying_layout = findViewById(R.id.open_nowPlaying);
 
         //add onclick listeners to the buttons, Play Nand Pause
         play.setOnClickListener(this);
@@ -68,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //create a new object for the Media Player
         mediaPlayer = new MediaPlayer();
 
-
         //creat an arraylist for the Music class
         music = new ArrayList<>();
 
@@ -88,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final MusicAdapter musicAdapter = new MusicAdapter(this, music);
 
         //locate the lsitview ti be used to display the music list
-        final ListView listView = findViewById(R.id.music_list);
+
 
         //cast the adapter on to the listview, this will show th added music
         listView.setAdapter(musicAdapter);
@@ -120,13 +145,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                  * if a song is already playing and another song is seleted the previous song is
                  * stopped
                  * */
-                if (mediaPlayer.isPlaying()) {
+
+                if (isPlaying) {
                     mediaPlayer.stop();
+                    isPlaying =false;
 
                     /*the newly selected song id the added to the media player to replace the previos song
                     and start() method is used to play the song
                      */
-
                     mediaPlayer = MediaPlayer.create(MainActivity.this, songs.getSongUrl());
                     mediaPlayer.start();
                 } else {
@@ -134,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //if there is no song playing, on selecting from the list. the selectd song is played
                     mediaPlayer = MediaPlayer.create(MainActivity.this, songs.getSongUrl());
                     mediaPlayer.start();
-
+                    isPlaying = true;
 
                 }
 
@@ -148,11 +174,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 below the screen
                 *
                  */
+
                 songnameTv = view.findViewById(R.id.song_name);
                 songname_String = songnameTv.getText().toString();
-                nowPlaying_songname.setText(songname_String + "__ __");
 
                 artistnameTV = view.findViewById(R.id.artist_name);
+                nowPlaying_songname.setText(songname_String + getString(R.string.music_separator));
+
+
                 artistString = artistnameTV.getText().toString();
                 nowPlaying_artist_name.setText(artistString);
 
@@ -203,6 +232,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.open_nowPlaying:
+                /*open the now playing Activity on button click
+                 */
+            case R.id.nowplayingclass:
                 /*
                  * on clicking the playback layout
                  * Open the Now Playing Activity
@@ -215,14 +247,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(open_nowPlying_activity);
 
                 break;
-            /*open the now playing Activity on button click
-             */
-            case R.id.nowplayingclass:
-                Intent open_nowPlying_activity2 = new Intent(MainActivity.this, NowPlaying.class);
-                open_nowPlying_activity2.putExtra("song_name", songname_String);
-                open_nowPlying_activity2.putExtra("artist_name", artistString);
-                startActivity(open_nowPlying_activity2);
-                break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {// goto back activity from here
+            // close the current activity, this will auromatical go
+            // back to the previous activity, right where it is at the moment
+            // you opened the new Activity
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

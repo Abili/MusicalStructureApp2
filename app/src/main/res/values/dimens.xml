@@ -1,6 +1,12 @@
 <resources>
-    <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
     <dimen name="text_size">18sp</dimen>
+    <dimen name="padding_and_margin">10dp</dimen>
+    <dimen name="margin1">20dp</dimen>
+    <dimen name="width_height_20">20dp</dimen>
+    <dimen name="width_height_50">50dp</dimen>
+    <dimen name="width_height_40">40dp</dimen>
+    <dimen name="margin_2">5dp</dimen>
+    <dimen name="fab_margin_bottom">60dp</dimen>
+    <dimen name="elevation">4dp</dimen>
+    <dimen name="width_height_30">30dp</dimen>
 </resources>

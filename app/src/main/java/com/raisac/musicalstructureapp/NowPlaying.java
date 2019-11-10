@@ -3,58 +3,64 @@ package com.raisac.musicalstructureapp;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class NowPlaying extends AppCompatActivity implements View.OnClickListener {
+    private static final String SONG_NAME = "song_name";
+    private static final String ARTIST_NAME = "artist_name";
+
 
     //instatiate the view
-    ImageView playbtn, pause, playist_icon;
-    MediaPlayer mediaPlayer;
-    LinearLayout playback;
-    FloatingActionButton back;
-    TextView song, artists;
-    MainActivity mainActivity;
+    @BindView(R.id.playbtn) ImageView playbtn;
+    @BindView(R.id.pausebtn) ImageView pause;
+    @BindView(R.id.playback_songname)TextView song;
+    @BindView(R.id.artists)TextView artists;
+    @BindView(R.id.playlis_menu)ImageView playist_icon;
+
+    private MediaPlayer mediaPlayer;
+    private  boolean isPlaying;
+    Music music;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_now_playing);
-        mainActivity = new MainActivity();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         //get the song name, from the previous class, using Intent
         Intent intent = getIntent();
-        String songsname = intent.getStringExtra("song_name");
-        String Artistsname = intent.getStringExtra("artist_name");
+        if (getIntent().getExtras() != null) {
+            if (getIntent().hasExtra(SONG_NAME) || getIntent().hasExtra(ARTIST_NAME)) {
+                String songsname = intent.getStringExtra(SONG_NAME);
+                String Artistsname = intent.getStringExtra(ARTIST_NAME);
 
-        //locate the view components using their resource IDs
-        song = findViewById(R.id.playback_songname);
-        back = findViewById(R.id.movebackFab);
-        artists = findViewById(R.id.artists);
-        playist_icon = findViewById(R.id.playlis_menu);
-        playbtn = findViewById(R.id.playbtn);
-        pause = findViewById(R.id.pausebtn);
+                //dind the views with their resource IDs
+                ButterKnife.bind(this);
 
-        //set the obtained song name to the textview ontop ot the activity
-        song.setText(songsname+ " __ __");
-        artists.setText(Artistsname);
-
+                //set the obtained song name to the textview ontop ot the activity
+                song.setText(songsname + getString(R.string.music_separator));
+                artists.setText(Artistsname);
+            }
+        }
         //create a new Media Player
         mediaPlayer = new MediaPlayer();
-
 
         //add onclick listeners to the play, pause and playlist icon, this is an ion that
         //opens the previous activity to show the music list(playlist)
         playbtn.setOnClickListener(this);
         pause.setOnClickListener(this);
         playist_icon.setOnClickListener(this);
-        back.setOnClickListener(this);
 
 
     }
@@ -76,7 +82,7 @@ public class NowPlaying extends AppCompatActivity implements View.OnClickListene
                 /* note that this fucntionality has not yet been implemeted, so the buttons
                  * only change from pause to play button actutally does not stop or play the songs
                  * */
-                if (!mediaPlayer.isPlaying()) {
+                if (!isPlaying) {
                     mediaPlayer.start();
                 }
                 break;
@@ -94,29 +100,27 @@ public class NowPlaying extends AppCompatActivity implements View.OnClickListene
                 /* note that this functionality has not yet been implemeted, so the buttons
                  * only change from pause to play button actutally does not stop or play the songs
                  * */
-                if (!mediaPlayer.isPlaying()) {
+                if (isPlaying) {
                     mediaPlayer.stop();
                 }
                 break;
 
             case R.id.playlis_menu:
-                /*
-                 * onclicking the plaulist menu/icon at the top right corner
-                 * the mainActivity class that shows the music list or the playlist is opened*/
-
-                startActivity(new Intent(NowPlaying.this, MainActivity.class));
-                break;
-
-            case R.id.movebackFab:
-                //onclicking the move back button it opens the old class
-
-                /*there is a bug here when the button is pressed
-                * the music player fucntionality is altered in that hen a new song
-                * clicked the previous one doe not stop*/
-                startActivity(new Intent(NowPlaying.this, MainActivity.class));
-
-                break;
 
         }
+    }
+
+    /*use this to listen to the actions taking place on the toolbars
+    * for example this one is to help move back to the previous Activity*/
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {// goto back activity from here
+            // close the current activity, this will auromatical go
+            // back to the previous activity, right where it is at the moment
+            // you opened the new Activity
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/padding_and_margin"
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".HomeScreen">
@@ -10,65 +10,64 @@
 
 <TextView
     android:id="@+id/actitivy_title"
-    android:layout_margin="10dp"
-    android:layout_width="wrap_content"
+    android:layout_margin="@dimen/padding_and_margin"
+   style="@style/wrap_content"
     android:textSize="@dimen/text_size"
     android:text="@string/Recent_activity"
-    android:layout_height="wrap_content"/>
+    />
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_below="@+id/actitivy_title"
         android:id="@+id/download_layout"
         android:layout_width="150dp"
         android:elevation="1dp"
         android:layout_height="200dp"
         android:background="#eee"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:targetApi="lollipop">
 
         <ImageView
-            android:layout_weight="3"
+            android:id="@+id/home_imageview"
             android:src="@drawable/home_music_icon"
             android:scaleType="fitStart"
             android:layout_width="match_parent"
-            android:layout_height="0dp"/>
+            android:layout_height="150dp"
+            android:contentDescription="@string/home_imageicon" />
 
-        <LinearLayout
-            android:layout_weight="1"
+        <RelativeLayout
+            android:layout_below="@id/home_imageview"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="50dp"
             android:background="@android:color/white"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="10dp"
+                style="@style/hei_wid_caps_backg"
+                android:padding="@dimen/padding_and_margin"
                 android:text="@string/songs_textview"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/text_size" />
+                />
 
             <ImageView
+                android:layout_alignParentEnd="true"
                 android:id="@+id/home_overflow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/overflow" />
+                style="@style/wrap_content"
+                android:src="@drawable/overflow"
+                android:contentDescription="@string/oveflow_image" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
+       style="@style/fab_style"
         android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:layout_alignParentRight="true"
-        android:backgroundTint="@android:color/white"
-        android:src="@drawable/forwad"
+        android:layout_margin="@dimen/padding_and_margin"
+        android:layout_alignParentEnd="true"
         android:id="@+id/fabPlaylist"
-        android:layout_height="wrap_content"/>
+
+        tools:targetApi="lollipop" />
 
 </RelativeLayout>

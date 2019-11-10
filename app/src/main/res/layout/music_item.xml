@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal">
 
     <ImageView
@@ -10,11 +11,11 @@
         android:layout_width="30dp"
         android:background="#eee"
         android:src="@drawable/home_music_icon"
-        android:layout_height="30dp"/>
+        android:layout_height="30dp"
+        android:contentDescription="@string/song_thumbnail" />
 
     <LinearLayout
-        android:id="@+id/song_details"
-        android:layout_toRightOf="@+id/songUrl"
+        android:layout_toEndOf="@+id/songUrl"
         android:layout_width="wrap_content"
         android:orientation="vertical"
         android:layout_height="wrap_content">
@@ -23,20 +24,19 @@
         <TextView
             android:ellipsize="marquee"
             android:id="@+id/song_name"
-            android:layout_width="wrap_content"
+            style="@style/fab_style"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:text="@string/song_name_textview"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size"
+            tools:text="@string/song_name_textview"
+
             android:singleLine="true" />
         <TextView
             android:ellipsize="marquee"
             android:id="@+id/artist_name"
-            android:layout_width="wrap_content"
+            style="@style/fab_style"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:text="@string/artist_name_textview"
-            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size"
+            tools:text="@string/artist_name_textview"
             android:singleLine="true" />
     </LinearLayout>
 

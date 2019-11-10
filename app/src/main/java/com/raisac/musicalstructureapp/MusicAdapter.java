@@ -1,29 +1,36 @@
 package com.raisac.musicalstructureapp;
+
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MusicAdapter extends ArrayAdapter<String> {
-    private final Activity context;
-    private final String[] names;
+import java.util.List;
 
-    static class ViewHolder {
-        public TextView songname, artistname;
-        public ImageView image;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+@SuppressWarnings("NullableProblems")
+class MusicAdapter extends ArrayAdapter<Music> {
+    private final Activity context;
+    private final List<Music> music;
+
+
+    public MusicAdapter(Activity context, List<Music> music) {
+        super(context, R.layout.music_item, music);
+        this.context = context;
+        this.music = music;
     }
 
-    public MusicAdapter(Activity context, String[] names) {
-        super(context, R.layout.music_item, names);
-        this.context = context;
-        this.names = names;
+    static class ViewHolder {
+        @BindView(R.id.song_name)TextView songname;
+        @BindView(R.id.artist_name) TextView artistname;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView,  ViewGroup parent) {
         View rowView = convertView;
         // reuse views
         if (rowView == null) {
@@ -31,16 +38,14 @@ public class MusicAdapter extends ArrayAdapter<String> {
             rowView = inflater.inflate(R.layout.music_item, null);
             // configure view holder
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.songname = rowView.findViewById(R.id.song_name);
-            viewHolder.artistname =  rowView.findViewById(R.id.artist_name);
+            ButterKnife.bind(this, rowView);
             rowView.setTag(viewHolder);
         }
 
         // fill data
         ViewHolder holder = (ViewHolder) rowView.getTag();
-        Music music = getItem(position);
-        holder.artistname.setText(s);
-        holder.songname.setText();
+        holder.songname.setText(music.get(position).getSongName());
+        holder.artistname.setText(music.get(position).getArtistName());
 
         return rowView;
     }

@@ -8,13 +8,63 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="width_height_50">
+        <item name="android:width">@dimen/width_height_50</item>
+        <item name="android:height">@dimen/width_height_50</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="width_height_40_margin">
+        <item name="android:width">@dimen/width_height_40</item>
+        <item name="android:height">@dimen/width_height_40</item>
+        <item name="android:layout_margin">@dimen/margin_2</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="width_height_40">
+        <item name="android:width">@dimen/width_height_40</item>
+        <item name="android:height">@dimen/width_height_40</item>
+    </style>
 
+    <style name="hei_wid_caps_backg">
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="fab_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:src">@drawable/forwad</item>
+        <item name="android:backgroundTint">@android:color/white</item>
+    </style>
+
+    <style name="wrap_content">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+
+    </style>
+
+    <style name="dimens">
+        <item name="android:layout_marginTop">@dimen/padding_and_margin</item>
+        <item name="android:layout_marginLeft">@dimen/margin1</item>
+        <item name="android:layout_marginRight">@dimen/width_height_50</item>
+        <item name="android:layout_height">@dimen/width_height_50</item>
+        <item name="android:layout_width">@dimen/width_height_50</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+    <style name="dimen_20">
+        <item name="android:layout_width">@dimen/width_height_20</item>
+        <item name="android:layout_height">@dimen/width_height_20</item>
+        <item name="android:layout_marginTop">@dimen/margin1</item>
+        <item name="android:layout_marginEnd">@dimen/margin1</item>
+    </style>
+
+    android:layout_width="@dimen/width_height_20"
+    android:layout_height="@dimen/width_height_20"
+    android:layout_marginTop="@dimen/margin1"
+    android:layout_marginEnd="@dimen/margin1"
 </resources>
